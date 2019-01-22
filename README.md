@@ -28,7 +28,7 @@ Some of the results, infering Garbor features from 200K 24x24 image patches out 
 
 ![Percepron Features](https://raw.githubusercontent.com/markusMM/Network-Expectation-Truncation/master/plots/BSC_NET_VanHateren_Gabors/W/it79.png)
 
-*Learned first-layer Perceptron activations from Co-Training Binary Sparse Coding and a Multi-Layer Perceptron. We can clearly see Gabor-like structures here.*
+*Learned Binary Sparse Coding generative fields from Co-Training Binary Sparse Coding and a Multi-Layer Perceptron. We can clearly see Gabor-like structures here.*
 
 ![Percepron Features](https://raw.githubusercontent.com/markusMM/Network-Expectation-Truncation/master/plots/BSC_NET_VanHateren_Gabors/Wperc0_1.png)
 
