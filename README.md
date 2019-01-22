@@ -26,10 +26,10 @@ However, due to this co-training, the feed-fprward prediction seems to be as goo
 
 Some of the results, infering Garbor features from 200K 24x24 image patches out of the Van'Hateren nat. image database, can be seen in the figures below.
 
-![Percepron Features]("https://raw.githubusercontent.com/markusMM/Network-Expectation-Truncation/master/plots/BSC_NET_VanHateren_Gabors/W/it79.png")
+![Percepron Features](https://raw.githubusercontent.com/markusMM/Network-Expectation-Truncation/master/plots/BSC_NET_VanHateren_Gabors/W/it79.png)
 *Learned first-layer Perceptron activations from Co-Training Binary Sparse Coding and a Multi-Layer Perceptron. We can clearly see Gabor-like structures here.*
 
-![Percepron Features]("https://raw.githubusercontent.com/markusMM/Network-Expectation-Truncation/master/plots/BSC_NET_VanHateren_Gabors/W.png")
+![Percepron Features](https://raw.githubusercontent.com/markusMM/Network-Expectation-Truncation/master/plots/BSC_NET_VanHateren_Gabors/W.png)
 *Learned first-layer Perceptron activations from Co-Training Binary Sparse Coding and a Multi-Layer Perceptron. The probabilistic component analysis did learn Gabor-like components, similar to the receptive fiels measured in the V1-cells of the brain.*
 
 # Usage 'API'
