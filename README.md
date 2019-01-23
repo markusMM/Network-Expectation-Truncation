@@ -24,7 +24,7 @@ In this framework, I implemented a co-training of the two models:
 While the generative model always tries to model new data points given its ifered paramters, the ff-network infers the most relevant latent variables. 
 The ff-network recomments those latents for the generative model for a reduced permutation of binary hidden states.
 
-![BSC Features](https://raw.githubusercontent.com/markusMM/Network-Expectation-Truncation/blob/master/plots/GrModelsimple21f.svg)
+![GrModel](https://raw.githubusercontent.com/markusMM/Network-Expectation-Truncation/master/plots/GrModelsimple21f.svg)
 
 *Graphical Model of Netwok Expectation Truncation: The ff-network does learn from generated data from the generative model. This model learns it's parameters directly calculating expectation values from the data given its probabilistic distributions. While aat the same time, the perceptron does recommend the $H'<H$ most important latent variables due to its marginal pridiction score. This replaces hand-tailored model specific selection functions from the truncation procedure. (c.f. [3]) *
 
