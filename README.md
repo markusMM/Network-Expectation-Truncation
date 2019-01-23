@@ -34,6 +34,14 @@ Some of the results, infering Garbor features from 200K 24x24 image patches out 
 
 *Learned first-layer Perceptron activations from Co-Training Binary Sparse Coding and a Multi-Layer Perceptron. The probabilistic component analysis did learn Gabor-like components, similar to the receptive fiels measured in the V1-cells of the brain.*
 
+# Example 2: Learning Edges from MNIST Data
+
+In this example I ran the supposed graphical model on the MNIST training set. Learning a large "over-complete" feature set for many itereatings. Here, we also have used a special form of linear annealing unsing univariate uniform Gaussian data noise (with no mean) which slowily decays in slowly until 8ß% full maximum EM epochs. In the following figures we see a few of the results.
+
+![Percepron Features](https://raw.githubusercontent.com/markusMM/Network-Expectation-Truncation/master/plots/BSC_NET_MNIST/Wperc0_1.png)
+
+*Learned first-layer Perceptron activations from Co-Training Binary Sparse Coding and a Multi-Layer Perceptron. The probabilistic component analysis did learn Gabor-like components, similar to the receptive fiels measured in the V1-cells of the brain.*
+
 # Usage 'API'
 
 To use this model, you can simply run the main script with the parameter file.
