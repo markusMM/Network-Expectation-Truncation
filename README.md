@@ -26,10 +26,9 @@ The ff-network recomments those latents for the generative model for a reduced p
 
 ![GrModel](https://raw.githubusercontent.com/markusMM/Network-Expectation-Truncation/master/plots/GrModelsimpleSLf.png)
 
-*Graphical Model of Netwok Expectation Truncation: The ff-network does learn from generated data from the generative model. This model learns it's parameters directly calculating expectation values from the data given its probabilistic distributions. While aat the same time, the perceptron does recommend the $H'<H$ most important latent variables due to its marginal pridiction score. This replaces hand-tailored model specific selection functions from the truncation procedure. (c.f. [3]) *
+*Graphical Model of Netwok Expectation Truncation: The ff-network replaces hand-tailoed model-specific selection functions for the most significant latent variable space and learns from generated data from the generative model. (c.f. [3]) *
 
-Here, the ff-network is only trained on data points generated from the generative model.
-However, due to this co-training, the feed-fprward prediction seems to be as good as the expectation values of the generative model infering the hidden latent variable space.
+The ff-network does learn from generated data from the generative model. This model learns it's parameters directly calculating expectation values from the data given its probabilistic distributions. While at the same time, the perceptron does recommend the $H'<H$ most important latent variables due to its marginal pridiction score. This replaces hand-tailored model specific selection functions from the truncation procedure. (confere [3])
 
 ### Example 1: Gabor-Features from 200K+ 24x24 Van'Hateren natural Image Patches
 
