@@ -9,9 +9,9 @@ Jörg Bornschein <bornschein@fias.uni-frankfurt.de>
 
 original version: https://github.com/jbornschein/mca-genmodel [1]
 
-## NET - Network Truncation Maximization
+## NET - Network Expectation Truncation
   
-This is a modified and highly optimized version of the Expectation Truncation algorithm [1,2] by adding a multi-label ff-Perceptron to the pobabilistic sparse coding component analysis framework.
+This is a modified and highly optimized version of the Expectation Truncation algorithm [1,2], a special form of Expectation Maximization, a Maximum Likelihood method for probabilistic generative models. We added a multi-label ff-Perceptron to the pobabilistic sparse coding component analysis framework.
 
 For simplifications, here, we just use the Multi-Layer Perceptron class from SciKit-Learn for our network.
 
