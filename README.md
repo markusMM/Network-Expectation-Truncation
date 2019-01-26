@@ -75,7 +75,9 @@ This doc is WIP.
 please be patient for further updates!
 
 ## References
-
+  
+  [0]   -   Meister M, Monk T, Lücke J (2018) Bootstrapping Sparse Coding with Multilayer Perceptrons. Bernstein Conference 2018. doi: 10.12751/nncn.bc2018.0088
+  
   [1]   -   Bornschein, Jörg & Shelton, Jacquelyn & Sheikh, Abdul-Saboor. (2012). The Maximal Causes of Binary Data. 
   
   [2]   -   Jörg Lücke and Julian Eggert. 2010. Expectation Truncation and the Benefits of Preselection In Training Generative Models. J. Mach. Learn. Res. 11 (December 2010), 2855-2900.
