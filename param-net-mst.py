@@ -130,10 +130,6 @@ while n < len(sys.argv):
     try:
         a = float(sys.argv[n+1])
         try:
-#                if any(sys.argv[n] == t for t in gt_list):
-#                    params_gt[sys.argv[n]] = float(a)
-#                    print('params_gt["%s"] = %f' % (sys.argv[n],a))
-#                else:
              exec('%s = %f' % (sys.argv[n],a))
              pprint('%s = %f' % (sys.argv[n],a))
         except:
@@ -240,16 +236,7 @@ if "mod_op" in locals():
 #%% top-layer
 
 if 'top_layer' in locals():
-#    if 'top_param' not in locals():
-#        if top_layer == 'perceptron':
-#            top_param = "activation='relu', alpha=1e-05, batch_size='auto',\
-#                        beta_1=0.9, beta_2=0.999, early_stopping=True,\
-#                        epsilon=1e-08, hidden_layer_sizes=(512,),\
-#                        learning_rate='constant', learning_rate_init=0.001,\
-#                        max_iter=250, momentum=0.9, nesterovs_momentum=True,\
-#                        power_t=0.5, random_state=1, shuffle=True, solver='adam',\
-#                        tol=1e-05, validation_fraction=0.3,\
-#                        verbose=False, warm_start=False"
+
     execfile('../utils/%s.py' %(top_layer))
     
     print(top_layer)
@@ -259,7 +246,7 @@ if 'top_layer' in locals():
 
 #%% random seed
 
-if 'Run' in locals() and 'fix_seed' in locals():
+if locals().get('Run',False) and locals().get('fix_seed',False):
     np.random.seed(int(Run))
     seed = int(Run)
 else:
@@ -357,22 +344,6 @@ if 'data_txt' in locals() or 'mlppath' in locals():
 pprint('Building MLP classifier..  ')
 
 early_stopping = bool(early_stopping)
-    
-
-# mlp = MLPClassifier(hidden_layer_sizes=(16,), max_iter=120, alpha=1e-4,
-#                        solver='sgd', tol=1e-7, activation='relu',
-#                        learning_rate_init=.005
-#                        ) #, verbose=1 #lbfgs
-
-#mlp = MLPClassifier(activation='relu', alpha=1e-05, batch_size='auto',
-#                    beta_1=0.9, beta_2=0.999, early_stopping=True,
-#                    epsilon=1e-08, hidden_layer_sizes=(2048,103,),
-#                    learning_rate='constant', learning_rate_init=0.001,
-#                    max_iter=250, momentum=0.9, nesterovs_momentum=True,
-#                    power_t=0.5, random_state=1, shuffle=True, solver='adam',
-#                    tol=1e-05, validation_fraction=0.3,
-#                    verbose=False, warm_start=False
-#                    )
 
 mlp = MLPClassifier(activation=actfun, alpha=1e-06, batch_size=batch_size,
                     beta_1=0.8, beta_2=0.9, early_stopping=early_stopping,
@@ -385,18 +356,7 @@ mlp = MLPClassifier(activation=actfun, alpha=1e-06, batch_size=batch_size,
                     verbose=False, warm_start=warm_start
                     )
 
-#mlp = MLPClassifier(activation='relu', alpha=1e-06, batch_size='auto',
-#                    beta_1=0.8, beta_2=0.9, early_stopping=True,
-#                    epsilon=1e-08, hidden_layer_sizes=(512,256),
-#                    learning_rate='constant', learning_rate_init=0.001,
-#                    max_iter=250, momentum=0.9, nesterovs_momentum=True,
-#                    power_t=0.5, random_state=1, shuffle=True, solver='adam',
-#                    tol=0.0001, validation_fraction=0.1,
-#                    verbose=False, warm_start=False
-#                    )
-
 mlp.gen_train = 1-gen_train > 0
-
 
 pprint(     'done.. with '
           +str(mlp.hidden_layer_sizes)
@@ -463,12 +423,6 @@ params_gt = {
 # Import and instantiate a model
 mod_fun     = mod_fun.upper()
 libstr      = mod_fun.lower()
-#    if mod_fun == "BSC_ET":
-#        from pulp.em.camodels.bsc_et import BSC_ET
-#        model = BSC_ET(D, H, Hprime, gamma)
-#    if mod_fun == "MCA_ET":
-#        from pulp.em.camodels.mca_et import MCA_ET
-#        model = MCA_ET(D, H, Hprime, gamma)
 exec('from pulp.em.camodels.%s import %s' % (libstr,mod_fun))
 exec('model = %s(%d,%d,%d,%d)' % (mod_fun,D, H, Hprime, gamma))
 model.fun_name = libstr
@@ -488,8 +442,6 @@ if 'K_mlp' in locals():
         #model.select_Hprimes = select_Hprimes
         model.mlp = mlp
         model.mlp.max_iter = mlp_gen_iter
-        #model.mlp.validation_fraction=0.3
-        #model.mlp.early_stopping = True
         if not(batch_size == 'auto'):
             model.mlp.batch_size=1
             model.mlp.batches_cn=Ntr//batch_size
