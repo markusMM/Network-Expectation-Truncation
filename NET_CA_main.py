@@ -438,6 +438,82 @@ if __name__ == "__main__":
         train_set = None
         test_set  = None
         valid_set = None
+    
+    if datatype=='MNIST_patch': ###############################################
+        
+        PeakAmp += 255
+        
+        # init data
+        if zca_flag:
+            zca = ZCA()
+        
+        # load in some MNIST data
+        import cPickle, gzip
+        
+        sys.path.append('data/')
+        try:
+            f = open('data/mnist.pkl', 'rb')
+            train_set, valid_set, test_set = cPickle.load(f)
+            f.close()
+        except:
+            f = gzip.open('data/mnist.pkl.gz', 'rb')
+            train_set, valid_set, test_set = cPickle.load(f)
+            f.close()
+        
+        my_N = N    // comm.size
+        te_N = Nte  // comm.size
+        va_N = Nva  // comm.size
+        
+        p = np.sqrt(D).astype(int)
+        
+        ims = train_set[0]
+        nms = train_set[1]
+        
+        ims = np.reshape(
+                ims,
+                [
+                        ims.shape[0],
+                        np.sqrt(ims.shape[1]).astype(int),
+                        np.sqrt(ims.shape[1]).astype(int)
+                 ]
+                )
+        
+        #crop patches
+        data = np.zeros((my_N+te_N+va_N,D),dtype='float64')
+        name = np.zeros((my_N+te_N+va_N),dtype='int16')
+        indw = np.random.randint(0,ims.shape[2]-p,N+Nte+Nva)
+        indh = np.random.randint(0,ims.shape[1]-p,N+Nte+Nva)
+        indi = np.random.randint(0,ims.shape[0],N+Nte+Nva)
+        for i,ind in enumerate(indi):
+         data[i] = ims[ind,indh[i]:indh[i]+p,indw[i]:indw[i]+p].reshape(D)
+         name[i] = nms[ind]
+        
+        #whiten files
+        if zca_flag:
+            zca = ZCA()
+            zca.fit(data[:1000],var=var/100.)
+            wdata = zca.transform(data)
+            pprint(wdata.shape)
+        else:
+            wdata = data.copy()
+        
+        my_data = {}
+        te_data = {}
+        va_data = {}
+        my_data['S'] = wdata[:my_N]
+        my_data['l'] =  name[:my_N]
+        my_data['y'] = my_data['S']
+        te_data['S'] = wdata[my_N:te_N+my_N]
+        te_data['l'] =  name[my_N:te_N+my_N]
+        te_data['y'] = te_data['S']
+        va_data['S'] = wdata[my_N+te_N:my_N+te_N+va_N]
+        va_data['l'] =  name[my_N+te_N:my_N+te_N+va_N]
+        va_data['y'] = va_data['S']
+        
+        
+        train_set = None
+        test_set  = None
+        valid_set = None
                     
     if datatype=='IMG' or datatype[0:2]=='ima':
         

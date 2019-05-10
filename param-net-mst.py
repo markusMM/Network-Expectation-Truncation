@@ -71,7 +71,7 @@ predict = 0;
 #%% -- (ML)P-params --
 
 # enabling co-training
-K_mlp = True
+K_mlp = False
 
 # data set size
 Ntr =   10000
@@ -97,9 +97,9 @@ batches = 1
 mlp_lrate = .001
 mlp_lmomm = 'constant'
 
-early_stopping=True
-warm_start = False
-nesterovs_momentum=True
+early_stopping = True
+warm_start = True
+nesterovs_momentum = True
 # hidden layer sizes
 n_hidden=np.array([]) # here no hidden layers
 validation_fraction=.1
@@ -187,6 +187,7 @@ while n < len(sys.argv):
 # -- integers --
 #size = int(size)
 D = int(D) # things that cannot be changed
+size = int(size)
 H = int(H)
 Hprime = int(Hprime)
 gamma  = int(gamma)
@@ -220,7 +221,8 @@ n_hidden = tuple(n_hidden[n_hidden!=0])
 dtypes = [
         'BARS',
         'MNIST',
-        'IMG'
+        'IMG',
+        'MNIST_patch'
         ]
 
 if 'datype' in locals():
