@@ -1,6 +1,9 @@
 /data
 /data/*
+
 /output
 /output/*
+
 /output/*/*
+
 /output/*/*/*
