@@ -1048,7 +1048,7 @@ if __name__ == "__main__":
             sigma_new = new_model_params['sigma']
             
             dim = list(y_tr.shape)
-            neta = np.random.normal(loc=0.0,scale=1.0,size=dim) * sigma
+            neta = np.random.randn(*y_tr.shape) * sigma
             bsc_tr_etaPSNR = (
             20*np.log10(
                     PeakAmp / (
@@ -1059,7 +1059,7 @@ if __name__ == "__main__":
                     )
             )
             dim = list(y_te.shape)
-            neta = np.random.normal(loc=0.0,scale=1.0,size=dim) * sigma
+            neta = np.random.randn(*y_te.shape) * sigma
             bsc_te_etaPSNR = (
             20*np.log10(
                     PeakAmp / (
@@ -1070,7 +1070,7 @@ if __name__ == "__main__":
                     )
             )
             dim = list(y_va.shape)
-            neta = np.random.normal(loc=0.0,scale=1.0,size=dim) * sigma
+            neta = np.random.randn(*y_va.shape) * sigma
             bsc_va_etaPSNR = (
             20*np.log10(
                     PeakAmp / (
